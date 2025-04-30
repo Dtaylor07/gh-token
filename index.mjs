@@ -124,21 +124,21 @@ app.get('/callback', async (req, res) => {
     }
 
     // Validate organization membership
-    const membershipRes = await fetch(`https://api.github.com/orgs/${ORG_NAME}/memberships/${userData.login}`, {
-      headers: {
-        Authorization: `token ${tokenData.access_token}`,
-        Accept: 'application/vnd.github+json',
-      },
-    });
+    // const membershipRes = await fetch(`https://api.github.com/orgs/${ORG_NAME}/memberships/${userData.login}`, {
+    //   headers: {
+    //     Authorization: `token ${tokenData.access_token}`,
+    //     Accept: 'application/vnd.github+json',
+    //   },
+    // });
 
-    if (membershipRes.status !== 200) {
-      return res.status(403).send('User is not a member of the required organization');
-    }
+    // if (membershipRes.status !== 200) {
+    //   return res.status(403).send('User is not a member of the required organization');
+    // }
 
-    const membershipData = await membershipRes.json();
-    if (membershipData.state !== 'active') {
-      return res.status(403).send('User is not an active member of the required organization');
-    }
+    // const membershipData = await membershipRes.json();
+    // if (membershipData.state !== 'active') {
+    //   return res.status(403).send('User is not an active member of the required organization');
+    // }
 
     // Token expiration time is 2 hours
     const expiresAt = new Date(Date.now() + 7200 * 1000).toISOString(); // 2 hours
